@@ -1,0 +1,66 @@
+*{
+    margin: 0%;
+    padding: 0%;
+    list-style: none;
+    text-decoration: none;
+}
+.header1{
+     width: 99.9%;
+     border: 1px solid #ccc;
+     box-shadow: 2px 0 6px rgb(136, 124, 124);
+     background: rgba(255, 255, 255,1);
+      position: fixed;
+      top: 0%;
+      z-index: 11;
+}
+.lie li{
+     float: right;
+     font-size:18px;
+     color: rgba(51,51,51,0.8);
+     margin: 32px 3.5%;
+     font-family:"pingFang sc","AriHal",sans-serif,"华文行楷";
+}
+#log img{
+    position: fixed;
+    top: 15px;
+    left: 60px;
+    z-index: 12;
+}
+.lie a{
+ color: rgba(51,51,51,0.6);
+ }
+ .lie a:link{
+     color: rgb(201, 75, 134);
+ }
+ .lie a:hover{
+     color: rgb(245, 57, 10);
+ }
+ .hot{
+     color: red;
+     font-size: 12px;
+ }
+ #sign,#register{
+     color: rgb(17, 16, 16);
+     cursor: pointer;
+ }
+#register:hover{
+    color: rgb(245, 57, 10);
+ }
+#sign:hover{
+    color: rgb(245, 57, 10);
+ }
+ #iframe1{
+        /* border: 1px solid red; */
+        position: relative;
+       /* display: none; */
+       top: 90px;
+       z-index:1;
+ }
+ #myframe1{
+    width: 100%;
+    height: 900px;
+ }
+ /* .span_class1 , .span_class2 , .span_class3 , .span_class4{
+     font-size:5px;
+     color: #ccc;
+ } */

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>index/首页</title>
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="css/sign.css">  
+</head>
+<body>
+	  <div id="log">
+          <img src="img/log.png" alt="">
+      </div>
+    <div class="header1">
+            <div class="lie">
+                <ul>
+                    <li><a id="sign">登录</a>/<a id="register">注册</a></li>
+                    <li><a href="publish.html"  target="myframe"> 留言板</a></li>
+                    <li><a href="">关于浩辰</a> </li>
+                    <li><a href="">个人日记</a> </li>
+                    <li><a href=""> 学无止境</a></li>
+                    <li><a href="">网站模板</a> </li>
+                    <li><a href="">免费视频教程</a><sup class="hot"><i><b>HOT</b> </i></sup></li>
+                    <li><a href="">首页</a> </li>
+                </ul>
+            </div> 
+    </div>
+
+<!-- 注册 -->
+        <div id="iframe1">
+            <frameset>   
+                <iframe name="myframe" id="myframe1"  src="publish.html"></iframe>
+            </frameset>
+        </div>
+
+    <div id="bak"></div>
+    <div id="bd1">
+            <div class="header">
+                <span>注册浩辰个人博客</span>
+                <hr width="90%">
+            </div>
+    <div class="form1">
+            
+                    <span  id="xing1">*</span><span id="title1">电子邮箱</span> <br>
+                        <input type="text" name="email"id="inpt1" placeholder="请输入邮箱" value="">    <span class="span_class1"></span>    <br>
+                    <span id="xing1">*</span><span id="title1">邮箱验证码</span> <br>
+                        <input type="text" name="yzm"   id="inpt2" placeholder="请输入邮箱验证码" placeholder="点击发送">    <span class="span_class2"></span>    <br>
+                    <span id="xing1">*</span><span id="title1">新密码</span> <br>
+                        <input type="password" name="upwd"   id="inpt3" placeholder="请输入密码">    <span class="span_class3"></span>    <br>
+                    <span id="xing1">*</span><span id="title1">确认密码</span> <br>
+                        <input type="password" name="newupwd"  id="inpt4" placeholder="请确认一下密码">    <span class="span_class4"></span>    <br>
+                        <input type="button" class="but1" name="" id="but2" value="验证码正在加载..."><br>
+                        <input type="submit" class="but2" name="" id="but1" onclick="publish2()"> 
+            
+        <div id="footer" class="footer">已经拥有账户？ <a id="sign_sign">登录</a></div>
+    </div>
+    </div>
+<!-- 登录 -->
+    <div id="ymbj"></div>
+    <div id="bj1">
+            <div class="hc1">
+                <span>登录浩辰个人博客</span>
+                <hr width="90%">
+            </div>
+    <div class="form_sign">
+           
+                    <span  id="xing_hao">*</span><span id="title_emial1">电子邮箱</span> <br>
+                        <input type="text"name="email" id="email" placeholder="请输入邮箱"><br>
+                    <span id="xing_hao">*</span><span id="title_emial1">密码</span> <br>
+                        <input type="password" name="newupwd" id="upwd" placeholder="请输入密码"><br>
+                        <input type="button" class="button1" name="" id="button1" value="点击进行人机验证..."><br>
+                        <input type="submit" class="button2" name="" id="button2" value="登录" onclick="login()"> 
+            
+        <div id="footer1" class="footer1">没有账号？<a id="register_register">注册</a></div>
+        <div class="footer2"><a href="publish.html">忘记密码？</a></div>
+        <div id="second">第三方账号登录</div>
+        <div id="qq"><img src="img/QQ.png" alt="QQ"></div>
+        <div id="weibo"><img src="img/WEIBO.png" alt="微博"></div>
+    </div>
+    
+    </div>
+
+</body>
+    <script type="text/javascript">
+        function publish2(){
+            //创建异步对象；
+            var xhr=new XMLHttpRequest();
+            //绑定监听器
+            xhr.onreadystatechange=function(){
+                if(xhr.readyState==4 && xhr.status==200){
+                    var result=xhr.responseText;
+                    alert(result);
+                }
+            }
+            //创建连接发送请求；
+            xhr.open("post","user/publish2",true);
+            //发送请求
+            var input_email=email;
+            var input_yzm=yzm;
+            var input_pwd=pwd;
+            var input_upwd=upwd;
+            var formdata="email="+input_email+"$yzm="+input_yzm+"$pwd="+input_pwd+"&upwd="+input_upwd;
+                xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                xhr.send(formdata)
+        }
+        function login(){
+                //创建异步对象，
+                var xhr=new XMLHttpRequest();
+                //绑定监听器；
+                //console.log(xhr)
+                xhr.onreadystatechange=function(){
+                    if(xhr.readyState==4 && xhr.status==200){
+                        var result=xhr.responseText;
+                        alert(result);
+                    }
+                }
+                //创建链接，发送请求；
+                xhr.open("post","/user/sign",true);
+                //发送请求  
+                var input_email=email.value;
+                var input_upwd=upwd.value;
+              
+                var formdata="email="+input_email+"&upwd="+input_upwd;
+                xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                xhr.send(formdata)
+            }
+        window.onload=function(){
+			//获取表单的背景，表单的文本背景，获取注册的按钮；
+			var bak1=document.getElementById("bak");
+			var bd1=document.getElementById("bd1");
+			var register=document.getElementById("register");
+			var sign=document.getElementById("sign");
+            var ymbj=document.getElementById("ymbj");
+            var bj1=document.getElementById("bj1");
+            var register_register=document.getElementById("register_register");
+            var sign_sign=document.getElementById("sign_sign");
+
+            register_register.onclick=function(){
+                    bak1.style.display='block';
+                    bd1.style.display='block';
+                    ymbj.style.display="none";
+                    bj1.style.display="none";
+            }
+
+            sign_sign.onclick=function(){
+                bak1.style.display='none';
+                bd1.style.display='none';
+                ymbj.style.display="block";
+                bj1.style.display="block";
+        }
+
+			register.onclick=function(){
+                  bak1.style.display="block";
+                  bd1.style.display="block";
+                  document.body.style.overflow="hidden";
+                }
+
+            bak1.onclick=function(event){
+                    if(event && event.stopPropagation){
+                      event.stopPropagation();
+                    }else{
+                      event.cancelBubble=true;
+                    };
+                    bak1.style.display='none';
+                    bd1.style.display='none';
+        
+                    //显示滚动条
+              document.body.style.overflow="auto";
+                    
+            }
+
+             sign.onclick=function(){
+                ymbj.style.display="block";
+                bj1.style.display="block";
+                document.body.style.overflow="hidden";
+              }
+
+              ymbj.onclick=function(event){
+                  if(event && event.stopPropagation){
+                    event.stopPropagation();
+                  }else{
+                    event.cancelBubble=true;
+                  };
+                  ymbj.style.display='none';
+                  bj1.style.display='none';
+      
+                  //显示滚动条
+            document.body.style.overflow="auto";
+                  
+          }
+
+         
+       } 
+       
+   /*    
+       //表单的验证
+          $("but1").onclick=function(){
+                var inpt1=Math.floor($("inpt1").value);//email;
+                var inpt2=Math.floor($("inpt2").value);
+                var inpt3=Math.floor($("inpt3").value);//密码
+                var inpt4=Math.floor($("inpt4").value);//密码
+                //console.log(inpt1,inpt2,inpt3,inpt4);
+                //alert(typeof(inpt1));
+                if(inpt1==""){
+                   //$("span_class1").innerText="不能为空/请输入正确的值";
+                   $("inpt1").style.borderColor='red';
+                   alert("禁止提交");
+
+                }
+                if(inpt3==inpt4){
+
+                }
+          }
+
+
+          function $(id){
+            return typeof id==="string"?document.getElementById(id):null;
+          }
+          */
+ </script>
+</html>
