@@ -1,1 +1,2 @@
 创建了一个demo.txt文件
+在另一个电脑上push到GitHub上去，并做了修改
