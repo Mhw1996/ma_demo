@@ -14,13 +14,3 @@ CREATE TABLE blog_user(
 	upwd	VARCHAR(30),	#密码
 	newupwd VARCHAR(30)		#确认密码；
 )
-
-
-
-
-
-
-
-
-
-

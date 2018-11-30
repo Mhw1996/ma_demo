@@ -5,6 +5,8 @@
 const express=require("express");
 //引入用户路由器；
 const userRouter=require("./routers/user_router.js");
+//引入Root路由
+const RootRouter=require("./routers/Root_one.js");
 //引入body-parser;
 const bodyParser=require("body-parser");
 var app=express();
@@ -13,6 +15,7 @@ app.listen(3000,()=>{
 });
 //托管静态文件到public下；
 app.use(express.static("public"));
+app.use(express.static("Root"));
 app.use(bodyParser.urlencoded({
 	extended:false
 }));
@@ -20,3 +23,4 @@ app.use(bodyParser.urlencoded({
 //把用户路由器挂载到/user下；
 //访问形式 /user/reginter
 app.use('/user',userRouter);
+app.use("/Root",RootRouter);

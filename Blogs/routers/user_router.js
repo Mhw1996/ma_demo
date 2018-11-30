@@ -27,8 +27,8 @@ router.post("/publish2",(req,res)=>{
 	var $email=obj.email;
 	var $yzm=obj.yzm;
 	var $upwd=obj.upwd;
-	var $newpwd=obj.newpwd;
-	//console.log($email,$pwd,$upwd);
+	var $newupwd=obj.newupwd;
+	//console.log($email, $yzm,$upwd,$newupwd);
 	if(!$email){
 		res.send("请输入邮箱名");
 		return;
@@ -37,13 +37,17 @@ router.post("/publish2",(req,res)=>{
 		res.send("请输入验证码");
 		return;
 	}
-	if($upwd){
+	if(!$upwd){
 		res.send("请输入密码");
-		result;
+		return;
 	}
-	if(!$newpwd){
+	if(!$newupwd){
 		res.send("请输入密码");
-		result;
+		return;
+	}
+	if($upwd!=$newupwd){
+		res.send("请确认密码,你输入的两次密码不一致");
+		return;
 	}
 	pool.query('INSERT INTO blog_user SET ?',[obj],(err,result)=>{
 		if(err) throw err;
@@ -54,28 +58,28 @@ router.post("/publish2",(req,res)=>{
 });
 //登录页面；
 router.post("/sign",(req,res)=>{
-	//var obj=req.body;
+	var obj=req.body;
 	//console.log(obj)
-	var $email=req.body.email;
-	var $newpwd=req.body.newpwd;
+	var $email=obj.email;
+	var $newupwd=obj.newupwd;
 	//var $pwd=obj.pwd;
-	//console.log($email,$upwd);
+	//console.log($email,$newupwd);
 	if(!$email){
 		res.send({code:406,msg:"email 请输入邮箱名"});
 		return;
 	}
-	if(!$newpwd){
+	if(!$newupwd){
 		res.send({code:407,msg:" 请输入密码"});
 		return;
 	};
-	pool.query("SELECT *FROM blog_user_zhuce WHERE email=? AND newpwd=?",[$email,$newpwd],(err,result)=>{
+	pool.query("SELECT *FROM blog_user WHERE email=? AND newupwd=?",[$email,$newupwd],(err,result)=>{	
 		if(result.length>0){
 			res.send({code:200,msg:'登陆成功'});
 		}else{
 			res.send({code:301,msg:'登录失败'})
 		}
+		//console.log(result)
 	})
 });
-
 //导出路由器；
 module.exports=router;     
