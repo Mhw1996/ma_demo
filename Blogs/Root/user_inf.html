@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>用户信息表</title>
+    <style>
+    #section{
+        /* background: rgba(238, 233, 233, 0.4); */
+        position: absolute;
+        top:180px;
+        width: 95%;
+        height: 600px;
+        border: 1px solid rgba(248, 242, 236, 0.884) ;
+        z-index: 3;
+    }
+    #nav1 th{
+        font-size: 20px;
+        color: rgb(115, 135, 156);
+        font-family: 楷体;
+        }  
+        tr{
+            color: rgb(115, 135, 156);
+        } 
+    td{
+        font-size: 13px;
+        text-align:center;
+        border:0.1px solid #ccc;
+        padding:10px 0px 7px 0px;
+        }
+        /* 设置input */
+    input{
+        position: relative;
+        top: -80px;
+        width: 500px;
+        height: 30px;
+        float: right;
+        border-radius: 5px;
+        border:0px;
+        border: 1px solid #ccc;
+    }
+    #d1 select{
+        width: 72px;
+        height: 44px;
+        position: relative;
+        top: -48px;
+        left: 100px;
+        font-size: 18px;
+        text-align: center;
+        color: rgb(115, 135, 156)
+
+    }
+    h5{
+        color: rgb(115, 135, 156)
+    }
+    h2{
+        color: rgb(115, 135, 156);
+    }
+    </style>
+</head>
+<body onload="list()">
+    <h2>用户列表</h2>
+    <hr>
+    <h5>每页显示的页数:</h5>
+    <div id="d1">
+        <select name="" id="">
+            <option value="1">10</option>
+            <option value="2">20</option>
+            <option value="4">40</option>
+            <option value="6">60</option>
+            <option value="8">80</option>
+            <option value="10">100</option>
+        </select>
+    </div>
+    <input type="text" placeholder="请输入关键字" >
+    <section id="section">
+        <table  width="100%" >
+            <thead id="nav1" width="100%" height="150px">
+                <th>用户编号</th>
+                <th>电子邮箱</th>
+                <th>验证码</th>
+                <th>确认密码</th>
+                <th>真实密码</th>
+                <th>删除操作</th>
+                <th>查找用户</th>
+            </thead>
+            <tbody id="content"></tbody>
+        </table>
+    </section>
+</body>
+<script type="text/javascript">
+    function list(){
+     var xhr=new XMLHttpRequest();
+        xhr.onreadystatechange=function(){
+         console.log(11111)
+         if(xhr.readyState==4&&xhr.status==200){
+             console.log(2222);
+             var result=xhr.responseText;
+             var user=JSON.parse(result);
+            //  console.log(user);
+            var html="";
+            for(var i=0;i<user.length;i++){
+                html+="<tr>";
+                    html+="<td>"+user[i].uid+"</td>";
+                    html+="<td>"+user[i].email+"</td>";
+                    html+="<td>"+user[i].yzm+"</td>";
+                    html+="<td>"+user[i].upwd+"</td>";
+                    html+="<td>"+user[i].newupwd+"</td>";
+                    html+="<td>"
+                    html+="<a href='javascript:delUser("+user[i].uid+")'>删除</a>";
+                    html+="</td>";
+                    html+="<td>";
+                    html+="<a href='javascript:updateUser("+user[i].uid+")'>查找</a>";
+                    html+="</td>"  
+            }
+            content.innerHTML=html;
+         }
+    }
+    console.log(333333)
+    xhr.open("get","/Root/user_list",true);
+    console.log(555555)
+    xhr.send(null);
+    }
+</script>
+</html>

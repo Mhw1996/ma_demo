@@ -5,9 +5,101 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Root_index</title>
-</head>
-<body>
-    <a href="">用户信息</a>
-    <a href="">管理员信息</a>
+    <style>
+    *{
+        margin: 0%;
+        padding: 0%;
+        list-style: none;
+        text-decoration: none;
+    }
+    /* 侧边栏 */
+    #aside{
+        position: absolute;
+        width: 230px;
+        height:950px;
+        background: #2A3F54;
+        border: 1px solid red;
+        top:0px;
+        z-index: 2;
+    }
+    #img1{
+        width: 100%;
+    }
+    #img1 img{
+        width: 50px;
+    }
+    #img1 ul li{ 
+        position: relative;
+        float: right; 
+        top: 26px;
+        margin: 0% 8% 0 0 ;
+    }
+    #latter{       
+        color: #ECF0F1;     
+        font-size: 22px;
+    }
+     #list ul li{
+        padding-top: 40%;
+    }
+    #list ul li a{
+        color: #ECF0F1;
+    }
+    #list ul li a:hover{
+        color: magenta;
+        border-bottom: 1px solid  #ECF0F1;
+    }
+    /* 标题头 */
+    #head{
+        position: relative;
+        width:100%;
+        height: 80px;
+        border:1px solid brown;
+        z-index: 1;
+    }
+    #span1{
+        float:right;
+        padding:27px 40px 0px 0px;
+        font-size: 18px;
+        color: #2A3F54;
+    }
+    /* 设置iframe*/
+   
+    iframe{
+        position: relative;
+        float:right;
+        width: 87.6%;
+        height: 868px;
+        /* background: rebeccapurple; */
+        z-index: 2;
+    }
+
+    /* 设置主页 */
+
+    </style>
+</head> 
+<body> 
+    <!-- 标题头 -->
+    <header id="head">
+        <span id="span1">超级管理员</span>
+    </header>
+    <!-- 侧边栏 -->
+    <aside id="aside">
+        <div id="img1">
+            <ul>
+                <li><img src="img/蜗牛1.png" id="imgs"></li>
+                <li><span id="latter">个人博客后台</span></li>
+            </ul>
+        </div>
+        <div id="list" align="center">
+            <ul>
+                <li><a href="http://127.0.0.1:3000/Root_index001.html" target="iframe_a">后台首页</a></li>
+                <li><a href="http://127.0.0.1:3000/user_inf.html" target="iframe_a">用户信息</a></li>
+                <li><a href="#">管理员信息</a></li>
+            </ul>
+        </div>
+    </aside>
+    <div id="body1">
+            <iframe src="http://127.0.0.1:3000/Root_index001.html" frameborder="0" scrolling="no" name="iframe_a">
+    </div>
 </body>
 </html>
